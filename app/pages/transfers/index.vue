@@ -87,27 +87,16 @@ const wireAccounts = WIRE_ACCOUNTS
 const achAccounts = ACH_ACCOUNTS
 const transfers = TRANSFERS
 
-const isDark = useState('isDarkMode', () => {
-  if (process.client) {
-    const stored = localStorage.getItem('darkMode')
-    if (stored !== null) {
-      return stored === 'true'
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  }
-  return false
-})
+const isDark = useState('isDarkMode', () => false)
 
 const syncThemeClass = () => {
-  if (process.client) {
-    const root = document.documentElement
-    if (isDark.value) {
-      root.classList.add('dark')
-      localStorage.setItem('darkMode', 'true')
-    } else {
-      root.classList.remove('dark')
-      localStorage.setItem('darkMode', 'false')
-    }
+  const root = document.documentElement
+  if (isDark.value) {
+    root.classList.add('dark')
+    localStorage.setItem('darkMode', 'true')
+  } else {
+    root.classList.remove('dark')
+    localStorage.setItem('darkMode', 'false')
   }
 }
 
@@ -117,21 +106,27 @@ const toggleTheme = () => {
 }
 
 onMounted(() => {
-  syncThemeClass()
-  // Watch for system theme changes
-  if (process.client) {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem('darkMode')) {
-        isDark.value = e.matches
-        syncThemeClass()
-      }
-    }
-    mediaQuery.addEventListener('change', handleChange)
-    onBeforeUnmount(() => {
-      mediaQuery.removeEventListener('change', handleChange)
-    })
+  // Initialize theme from localStorage or system preference
+  const stored = localStorage.getItem('darkMode')
+  if (stored !== null) {
+    isDark.value = stored === 'true'
+  } else {
+    isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
   }
+  syncThemeClass()
+
+  // Watch for system theme changes
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  const handleChange = (e: MediaQueryListEvent) => {
+    if (!localStorage.getItem('darkMode')) {
+      isDark.value = e.matches
+      syncThemeClass()
+    }
+  }
+  mediaQuery.addEventListener('change', handleChange)
+  onBeforeUnmount(() => {
+    mediaQuery.removeEventListener('change', handleChange)
+  })
 })
 </script>
 

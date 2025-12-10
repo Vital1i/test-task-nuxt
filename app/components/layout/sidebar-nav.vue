@@ -39,7 +39,7 @@
     </nav>
 
     <div class="flex flex-col items-center gap-[16px] w-full">
-      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80" @click="handleNavClick">
+      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500" @click="handleNavClick">
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="supportIcon" alt="Support" class="h-5 w-5 dark:brightness-0 dark:invert" />
         </span>
@@ -47,7 +47,7 @@
           Support
         </span>
       </button>
-      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80" @click="handleNavClick">
+      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500" @click="handleNavClick">
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="disclosuresIcon" alt="Disclosures" class="h-5 w-5 dark:brightness-0 dark:invert" />
         </span>
@@ -71,12 +71,10 @@ const isOpen = useState('sidebarOpen', () => false)
 const isMobile = ref(false)
 
 const checkMobile = () => {
-  if (process.client) {
-    isMobile.value = window.innerWidth < 1024
-    // Auto-close sidebar when resizing to desktop
-    if (!isMobile.value) {
-      isOpen.value = false
-    }
+  isMobile.value = window.innerWidth < 1024
+  // Auto-close sidebar when resizing to desktop
+  if (!isMobile.value) {
+    isOpen.value = false
   }
 }
 
@@ -91,13 +89,11 @@ const handleNavClick = () => {
 }
 
 onMounted(() => {
-  if (process.client) {
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    onBeforeUnmount(() => {
-      window.removeEventListener('resize', checkMobile)
-    })
-  }
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', checkMobile)
+  })
 })
 
 // Expose toggle function for parent components

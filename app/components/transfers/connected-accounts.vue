@@ -15,7 +15,7 @@
       </div>
       <button
         type="button"
-        class="text-brand-700 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 text-sm font-semibold inline-flex items-center gap-2 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 rounded-lg px-3 py-2 hover:bg-brand-50 dark:hover:bg-brand-900/30 focus-visible:outline-brand-500/80"
+        class="text-brand-700 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 text-sm font-semibold inline-flex items-center gap-2 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 rounded-lg px-3 py-2 hover:bg-brand-50 dark:hover:bg-brand-900/30"
       >
         <span class="text-lg leading-none">+</span>
         Add New Wire Account
@@ -37,7 +37,7 @@
       </div>
       <button
         type="button"
-        class="text-brand-700 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 text-sm font-semibold inline-flex items-center gap-2 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 rounded-lg px-3 py-2 hover:bg-brand-50 dark:hover:bg-brand-900/30 focus-visible:outline-brand-500/80"
+        class="text-brand-700 dark:text-brand-400 hover:text-brand-600 dark:hover:text-brand-300 text-sm font-semibold inline-flex items-center gap-2 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 rounded-lg px-3 py-2 hover:bg-brand-50 dark:hover:bg-brand-900/30"
       >
         <span class="text-lg leading-none">+</span>
         Connect New via Plaid

@@ -18,7 +18,7 @@
       </div>
       <button
         type="button"
-        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-sm sm:text-base font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-pill-bg dark:bg-slate-800 hover:bg-pill-hover dark:hover:bg-slate-700 hover:border-brand-200 dark:hover:border-brand-600 focus-visible:outline-brand-500/80 text-text-secondary dark:text-slate-300 font-jakarta whitespace-nowrap flex-shrink-0 self-start sm:self-auto"
+        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-sm sm:text-base font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-pill-bg dark:bg-slate-800 hover:bg-pill-hover dark:hover:bg-slate-700 hover:border-brand-200 dark:hover:border-brand-600 text-text-secondary dark:text-slate-300 font-jakarta whitespace-nowrap flex-shrink-0 self-start sm:self-auto"
       >
         Last 7 days
       </button>
