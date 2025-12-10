@@ -1,5 +1,5 @@
 <template>
-  <div class="card p-6 flex flex-col gap-4">
+  <div class="card p-4 sm:p-5 md:p-6 flex flex-col gap-4">
     <div class="flex items-center justify-between gap-3 flex-wrap">
       <div>
         <p class="text-md font-medium font-jakarta text-text-primary dark:text-slate-100">
@@ -14,7 +14,7 @@
       </button>
     </div>
     <div>
-      <canvas ref="canvasEl" class="w-full h-72 md:h-80"></canvas>
+      <canvas ref="canvasEl" class="w-full h-64 sm:h-72 md:h-80"></canvas>
     </div>
   </div>
 </template>

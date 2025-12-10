@@ -1,12 +1,27 @@
 <template>
+  <!-- Mobile Overlay -->
+  <Transition name="fade">
+    <div
+      v-if="isOpen && isMobile"
+      class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+      @click="closeSidebar"
+    ></div>
+  </Transition>
+
+  <!-- Sidebar -->
   <aside
-    class="hidden lg:flex flex-col items-center w-[112px] bg-sidebar-bg dark:bg-slate-800 pt-2 pb-4 gap-6 sticky top-12 h-[calc(100vh-48px)] justify-between border border-sidebar-border dark:border-slate-700"
+    :class="[
+      'flex flex-col items-center w-[112px] bg-sidebar-bg dark:bg-slate-800 pt-2 pb-4 gap-6 border border-sidebar-border dark:border-slate-700 transition-transform duration-300 ease-in-out',
+      'fixed lg:sticky top-12 left-0 h-[calc(100vh-48px)] z-50 lg:z-auto',
+      isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'
+    ]"
   >
-    <nav class="flex flex-col items-center gap-[12px] w-full flex-1">
+    <nav class="flex flex-col items-center gap-[12px] w-full flex-1 overflow-y-auto">
       <button
         v-for="item in items"
         :key="item.label"
-        class="flex flex-col items-center w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50"
+        class="flex flex-col items-center w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+        @click="handleNavClick"
       >
         <span
           class="flex items-center justify-center h-6 rounded-2xl"
@@ -24,7 +39,7 @@
     </nav>
 
     <div class="flex flex-col items-center gap-[16px] w-full">
-      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80">
+      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80" @click="handleNavClick">
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="supportIcon" alt="Support" class="h-5 w-5 dark:brightness-0 dark:invert" />
         </span>
@@ -32,7 +47,7 @@
           Support
         </span>
       </button>
-      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80">
+      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 dark:hover:bg-slate-700/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80" @click="handleNavClick">
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="disclosuresIcon" alt="Disclosures" class="h-5 w-5 dark:brightness-0 dark:invert" />
         </span>
@@ -72,4 +87,45 @@ const items: NavItem[] = [
   { label: 'Platform', icon: platformIcon },
   { label: 'Referrals', icon: referralsIcon }
 ]
+
+const isOpen = useState('sidebarOpen', () => false)
+
+const isMobile = ref(false)
+
+const checkMobile = () => {
+  if (process.client) {
+    isMobile.value = window.innerWidth < 1024
+    // Auto-close sidebar when resizing to desktop
+    if (!isMobile.value) {
+      isOpen.value = false
+    }
+  }
+}
+
+const closeSidebar = () => {
+  isOpen.value = false
+}
+
+const handleNavClick = () => {
+  if (isMobile.value) {
+    closeSidebar()
+  }
+}
+
+onMounted(() => {
+  if (process.client) {
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', checkMobile)
+    })
+  }
+})
+
+// Expose toggle function for parent components
+defineExpose({
+  toggle: () => { isOpen.value = !isOpen.value },
+  close: closeSidebar,
+  open: () => { isOpen.value = true }
+})
 </script>
