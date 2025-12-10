@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import TopHeader from '@/components/layout/TopHeader.vue'
+import TopHeader from '@/components/layout/top-header.vue'
 </script>

@@ -8,7 +8,7 @@
             :key="tab.key"
             type="button"
             class="flex items-center justify-center gap-2 px-5 py-[2px] text-[14px] leading-[28px] font-medium text-center align-middle transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-            :class="activeFilter === tab.key ? 'bg-[#CFE5F8] text-[#1B1B21]' : 'text-[#1B1B21] bg-transparent'"
+            :class="activeFilter === tab.key ? 'bg-[#CFE5F8] text-[#1B1B21] hover:bg-[#b8d9f5]' : 'text-[#1B1B21] bg-transparent hover:bg-[#eef4ff] hover:text-[#1B1B21]'"
             style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; border-color: #767680;"
             @click="activeFilter = tab.key"
           >
@@ -19,8 +19,8 @@
       </div>
       <button
         type="button"
-        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-        style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; color: #45464F; background-color: #F5F2FA;"
+        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-[#F5F2FA] hover:bg-[#E7E3F4] hover:border-brand-200 focus-visible:outline-brand-500/80"
+        style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; color: #45464F;"
       >
         Last 7 days
       </button>
@@ -31,35 +31,35 @@
         <table class="min-w-full text-sm bg-transparent rounded-2xl overflow-hidden">
           <thead class="border-b border-[#C6C5D0] dark:border-slate-800">
             <tr class="text-left text-[#5B5C64]">
-              <th class="py-[10px] px-4 font-semibold">Date</th>
-              <th class="py-[10px] px-4 font-semibold">Type</th>
-              <th class="py-[10px] px-4 font-semibold">Method</th>
-              <th class="py-[10px] px-4 font-semibold">Account</th>
-              <th class="py-[10px] px-4 font-semibold">Amount ($)</th>
-              <th class="py-[10px] px-4 font-semibold text-center">Status</th>
+              <th
+                v-for="col in columns"
+                :key="col.key"
+                class="py-[10px] px-4 font-semibold"
+                :class="col.align === 'center' ? 'text-center' : ''"
+              >
+                {{ col.label }}
+              </th>
             </tr>
           </thead>
           <tbody v-if="filtered.length" class="divide-y divide-[#C6C5D0] dark:divide-slate-800">
             <tr v-for="transfer in filtered" :key="transfer.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/60">
-              <td class="py-[18px] px-4">{{ transfer.date }}</td>
-              <td class="py-[18px] px-4">{{ transfer.type }}</td>
-              <td class="py-[18px] px-4">{{ transfer.method }}</td>
-              <td class="py-[18px] px-4">{{ transfer.account }}</td>
-              <td class="py-[18px] px-4 font-semibold" :class="transfer.amount < 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-50'">
-                {{ formatCurrency(transfer.amount) }}
-              </td>
-              <td class="py-[18px] px-4 text-center">
-                <StatusBadge :status="transfer.status" />
+              <td v-for="col in columns" :key="col.key" class="py-[18px] px-4" :class="col.align === 'center' ? 'text-center' : ''">
+                <template v-if="col.key === 'amount'">
+                  <span class="font-semibold" :class="transfer.amount < 0 ? 'text-red-600' : 'text-slate-900 dark:text-slate-50'">
+                    {{ formatCurrency(transfer.amount) }}
+                  </span>
+                </template>
+                <template v-else-if="col.key === 'status'">
+                  <StatusBadge :status="transfer.status" />
+                </template>
+                <template v-else>
+                  {{ transfer[col.key] }}
+                </template>
               </td>
             </tr>
           </tbody>
         </table>
-        <div v-if="!filtered.length" class="rounded-2xl flex flex-col items-center justify-center py-12 gap-3 text-[#5B5C64]">
-          <img :src="clockIcon" alt="No transfers" class="h-8 w-8" />
-          <p class="text-[18px] leading-[24px] font-medium" style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;">
-            You don’t have any recent transfers yet.
-          </p>
-        </div>
+        <TransfersEmptyState v-if="!filtered.length" :icon="clockIcon" message="You don’t have any recent transfers yet." />
       </div>
     </div>
 
@@ -98,7 +98,8 @@
 </template>
 
 <script setup lang="ts">
-import StatusBadge from '@/components/transfers/StatusBadge.vue'
+import StatusBadge from '@/components/transfers/status-badge.vue'
+import TransfersEmptyState from '@/components/transfers/transfers-empty-state.vue'
 import clockIcon from '@/../assets/img/clock.svg'
 
 type Transfer = {
@@ -119,6 +120,15 @@ const tabs = [
   { key: 'all', label: 'All' },
   { key: 'Wire', label: 'Wire' },
   { key: 'ACH', label: 'ACH' }
+]
+
+const columns = [
+  { key: 'date', label: 'Date', align: 'left' },
+  { key: 'type', label: 'Type', align: 'left' },
+  { key: 'method', label: 'Method', align: 'left' },
+  { key: 'account', label: 'Account', align: 'left' },
+  { key: 'amount', label: 'Amount ($)', align: 'left' },
+  { key: 'status', label: 'Status', align: 'center' }
 ]
 
 const activeFilter = ref<'all' | 'Wire' | 'ACH'>('all')

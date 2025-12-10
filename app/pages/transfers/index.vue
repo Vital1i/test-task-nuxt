@@ -77,10 +77,10 @@
 </template>
 
 <script setup lang="ts">
-import SidebarNav from '@/components/layout/SidebarNav.vue'
-import BalanceChart from '@/components/transfers/BalanceChart.vue'
-import ConnectedAccounts from '@/components/transfers/ConnectedAccounts.vue'
-import TransfersTable from '@/components/transfers/TransfersTable.vue'
+import SidebarNav from '@/components/layout/sidebar-nav.vue'
+import BalanceChart from '@/components/transfers/balance-chart.vue'
+import ConnectedAccounts from '@/components/transfers/connected-accounts.vue'
+import TransfersTable from '@/components/transfers/transfers-table.vue'
 
 definePageMeta({
   title: 'Money Transfers — Overview'

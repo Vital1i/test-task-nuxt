@@ -6,7 +6,8 @@
       <button
         v-for="item in items"
         :key="item.label"
-        class="flex flex-col items-center gap-2 w-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+        class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150"
+        :class="item.active ? 'hover:bg-white' : 'hover:bg-white/80'"
       >
         <span
           class="flex items-center justify-center h-6 rounded-2xl"
@@ -25,7 +26,7 @@
     </nav>
 
     <div class="flex flex-col items-center gap-[16px] w-full">
-      <button class="flex flex-col items-center gap-2 w-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">
+      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80">
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="supportIcon" alt="Support" class="h-5 w-5" />
         </span>
@@ -36,7 +37,7 @@
           Support
         </span>
       </button>
-      <button class="flex flex-col items-center gap-2 w-full transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">
+      <button class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline-brand-500/80">
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="disclosuresIcon" alt="Disclosures" class="h-5 w-5" />
         </span>

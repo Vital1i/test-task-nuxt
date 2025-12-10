@@ -11,8 +11,8 @@
       </div>
       <button
         type="button"
-        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-        style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; color: #45464F; background-color: #F5F2FA;"
+        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-[#F5F2FA] hover:bg-[#E7E3F4] hover:border-brand-200 focus-visible:outline-brand-500/80"
+        style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; color: #45464F;"
       >
         Last 90 days
       </button>
