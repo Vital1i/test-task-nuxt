@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-surface text-slate-900 dark:bg-slate-950 dark:text-slate-50 font-inter antialiased;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-card dark:bg-slate-900 border border-border/80 dark:border-slate-800 shadow-card rounded-xl;
+  }
+
+  .muted {
+    @apply text-sm text-muted dark:text-slate-400;
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium transition-colors;
+  }
+
+  .pill-active {
+    @apply bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-slate-50;
+  }
+
+  .pill-ghost {
+    @apply bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800;
+  }
+}
