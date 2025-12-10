@@ -20,7 +20,7 @@
 
 @layer components {
   .card {
-    @apply bg-card dark:bg-slate-900 border border-border/80 dark:border-slate-800 shadow-card rounded-xl;
+    @apply bg-card dark:bg-slate-900 border border-border/80 dark:border-slate-700 shadow-card dark:shadow-none rounded-xl;
   }
 
   .muted {
@@ -32,7 +32,7 @@
   }
 
   .pill-active {
-    @apply bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-slate-50;
+    @apply bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-slate-100;
   }
 
   .pill-ghost {
