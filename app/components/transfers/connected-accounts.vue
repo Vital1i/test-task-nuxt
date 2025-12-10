@@ -49,13 +49,8 @@
 <script setup lang="ts">
 import wireIcon from '@/../assets/img/wire.svg'
 import plaidIcon from '@/../assets/img/palid.svg'
-import AccountRow from '@/components/transfers/account-row.vue'
-
-type Account = {
-  id: string
-  name: string
-  last4: string
-}
+import { AccountRow } from '@/components/transfers'
+import type { Account } from '@/types/transfers'
 
 defineProps<{
   wireAccounts: Account[]

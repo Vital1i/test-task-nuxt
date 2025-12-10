@@ -19,11 +19,7 @@
 </template>
 
 <script setup lang="ts">
-type Account = {
-  id: string
-  name: string
-  last4: string
-}
+import type { Account } from '@/types/transfers'
 
 const props = defineProps<{
   account: Account

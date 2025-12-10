@@ -65,58 +65,27 @@
 </template>
 
 <script setup lang="ts">
-import SidebarNav from '@/components/layout/sidebar-nav.vue'
-import BalanceChart from '@/components/transfers/balance-chart.vue'
-import ConnectedAccounts from '@/components/transfers/connected-accounts.vue'
-import TransfersTable from '@/components/transfers/transfers-table.vue'
+import { SidebarNav } from '@/components/layout'
+import { BalanceChart, ConnectedAccounts, TransfersTable } from '@/components/transfers'
+import {
+  HEADER_TABS,
+  WEEKS,
+  BALANCES,
+  WIRE_ACCOUNTS,
+  ACH_ACCOUNTS,
+  TRANSFERS
+} from '@/mocks/transfers'
 
 definePageMeta({
   title: 'Money Transfers — Overview'
 })
 
-const headerTabs = ['Overview', 'Deposit', 'Withdraw', 'History']
-
-const weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12']
-const balances = [22, 14, 26, 20, 23, 9, 25, 26, 24, 19, 27, 28]
-
-const wireAccounts = [
-  { id: 'wire-1', name: 'BMO Harris Bank', last4: '6222' }
-]
-
-const achAccounts = [
-  { id: 'ach-1', name: 'Bank of America', last4: '3456' },
-  { id: 'ach-2', name: 'Chase', last4: '1122' }
-]
-
-const transfers = [
-  {
-    id: 't-1',
-    date: 'Nov 4, 2025 12:15 PM',
-    type: 'Deposit',
-    method: 'ACH',
-    account: '****3456',
-    amount: 40000,
-    status: 'Pending'
-  },
-  {
-    id: 't-2',
-    date: 'Nov 3, 2025 4:16 PM',
-    type: 'Withdrawal',
-    method: 'Wire',
-    account: '****6222',
-    amount: -8888.08,
-    status: 'Completed'
-  },
-  {
-    id: 't-3',
-    date: 'Nov 3, 2025 3:23 PM',
-    type: 'Withdrawal',
-    method: 'Wire',
-    account: '****6222',
-    amount: -8888.08,
-    status: 'Rejected'
-  }
-]
+const headerTabs = [...HEADER_TABS]
+const weeks = [...WEEKS]
+const balances = [...BALANCES]
+const wireAccounts = WIRE_ACCOUNTS
+const achAccounts = ACH_ACCOUNTS
+const transfers = TRANSFERS
 
 const isDark = useState('isDarkMode', () => {
   if (process.client) {

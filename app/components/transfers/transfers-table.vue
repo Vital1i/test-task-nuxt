@@ -103,40 +103,19 @@
 </template>
 
 <script setup lang="ts">
-import StatusBadge from '@/components/transfers/status-badge.vue'
-import TransfersEmptyState from '@/components/transfers/transfers-empty-state.vue'
+import { StatusBadge, TransfersEmptyState } from '@/components/transfers'
 import clockIcon from '@/../assets/img/clock.svg'
-
-type Transfer = {
-  id: string
-  date: string
-  type: string
-  method: 'Wire' | 'ACH'
-  account: string
-  amount: number
-  status: 'Pending' | 'Completed' | 'Rejected'
-}
+import type { Transfer, TransferFilter } from '@/types/transfers'
+import { TRANSFER_TABS, TRANSFER_COLUMNS } from '@/mocks/transfers-table'
 
 const props = defineProps<{
   transfers: Transfer[]
 }>()
 
-const tabs = [
-  { key: 'all', label: 'All' },
-  { key: 'Wire', label: 'Wire' },
-  { key: 'ACH', label: 'ACH' }
-]
+const tabs = TRANSFER_TABS
+const columns = TRANSFER_COLUMNS
 
-const columns = [
-  { key: 'date', label: 'Date', align: 'left' },
-  { key: 'type', label: 'Type', align: 'left' },
-  { key: 'method', label: 'Method', align: 'left' },
-  { key: 'account', label: 'Account', align: 'left' },
-  { key: 'amount', label: 'Amount ($)', align: 'left' },
-  { key: 'status', label: 'Status', align: 'center' }
-]
-
-const activeFilter = ref<'all' | 'Wire' | 'ACH'>('all')
+const activeFilter = ref<TransferFilter>('all')
 
 const filtered = computed(() => {
   if (activeFilter.value === 'all') return props.transfers
