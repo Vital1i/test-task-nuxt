@@ -2,17 +2,13 @@
   <div class="card p-6 flex flex-col gap-4">
     <div class="flex items-center justify-between gap-3 flex-wrap">
       <div>
-        <p
-          class="text-[16px] leading-[24px] font-medium"
-          style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0; color: #1B1B21;"
-        >
+        <p class="text-md font-medium font-jakarta text-text-primary">
           Cash Available to Trade
         </p>
       </div>
       <button
         type="button"
-        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-[#F5F2FA] hover:bg-[#E7E3F4] hover:border-brand-200 focus-visible:outline-brand-500/80"
-        style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; color: #45464F;"
+        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-base font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-pill-bg hover:bg-pill-hover hover:border-brand-200 focus-visible:outline-brand-500/80 text-text-secondary font-jakarta"
       >
         Last 90 days
       </button>

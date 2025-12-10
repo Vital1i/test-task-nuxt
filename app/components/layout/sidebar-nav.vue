@@ -1,13 +1,12 @@
 <template>
   <aside
-    class="hidden lg:flex flex-col items-center w-[112px] bg-[#F3F4F6] pt-6 pb-10 gap-6 sticky top-12 h-[calc(100vh-48px)] justify-between border border-[#E5E7EB]"
+    class="hidden lg:flex flex-col items-center w-[112px] bg-sidebar-bg pt-2 pb-4 gap-6 sticky top-12 h-[calc(100vh-48px)] justify-between border border-sidebar-border"
   >
-    <nav class="flex flex-col items-center gap-[16px] w-full flex-1">
+    <nav class="flex flex-col items-center gap-[12px] w-full flex-1">
       <button
         v-for="item in items"
         :key="item.label"
-        class="flex flex-col items-center gap-2 w-full rounded-lg px-3 py-2 transition-colors duration-150"
-        :class="item.active ? 'hover:bg-white' : 'hover:bg-white/80'"
+        class="flex flex-col items-center w-full rounded-lg px-3 py-2 transition-colors duration-150 hover:bg-white/80"
       >
         <span
           class="flex items-center justify-center h-6 rounded-2xl"
@@ -16,9 +15,8 @@
           <img :src="item.icon" :alt="item.label" class="h-5 w-5" />
         </span>
         <span
-          class="text-[12px] leading-4 font-medium"
-          :class="item.active ? 'text-brand-700' : 'text-[#1B1B21]'"
-          style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.15px;"
+          class="text-sm font-medium font-jakarta"
+          :class="item.active ? 'text-brand-700' : 'text-text-primary'"
         >
           {{ item.label }}
         </span>
@@ -30,10 +28,7 @@
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="supportIcon" alt="Support" class="h-5 w-5" />
         </span>
-        <span
-          class="text-[12px] leading-4 font-medium text-[#1B1B21]"
-          style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.15px;"
-        >
+        <span class="text-sm font-medium font-jakarta text-text-primary">
           Support
         </span>
       </button>
@@ -41,10 +36,7 @@
         <span class="flex items-center justify-center h-6 w-6 rounded-2xl">
           <img :src="disclosuresIcon" alt="Disclosures" class="h-5 w-5" />
         </span>
-        <span
-          class="text-[12px] leading-4 font-medium text-[#1B1B21]"
-          style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.15px;"
-        >
+        <span class="text-sm font-medium font-jakarta text-text-primary">
           Disclosures
         </span>
       </button>

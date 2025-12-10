@@ -8,10 +8,7 @@
           <div class="flex flex-col gap-3">
             <div class="flex items-center justify-between gap-4">
               <div class="flex items-center gap-8">
-                <h1
-                  class="text-[24px] leading-[32px] font-medium text-[#1B1B21]"
-                  style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0;"
-                >
+                <h1 class="text-2xl font-medium text-text-primary font-jakarta">
                   Money Transfers
                 </h1>
                 <div class="flex items-center gap-2 overflow-x-auto">
@@ -19,9 +16,8 @@
                     v-for="tab in headerTabs"
                     :key="tab"
                     type="button"
-                    class="pill text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                    class="pill text-base font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 font-jakarta"
                     :class="tab === 'Overview' ? 'pill-active px-4 py-[10px] font-semibold' : 'pill-ghost'"
-                    style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px;"
                   >
                     {{ tab }}
                   </button>
@@ -44,29 +40,20 @@
 
       <section class="px-4 md:px-6 lg:px-8 py-6 space-y-12">
         <div>
-          <h2
-            class="text-[22px] leading-[28px] font-medium text-[#1B1B21] mb-6"
-            style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0;"
-          >
+          <h2 class="text-xl font-medium text-text-primary mb-6 font-jakarta">
             Account balance
           </h2>
           <BalanceChart :labels="weeks" :values="balances" />
         </div>
         <div>
-          <h2
-            class="text-[22px] leading-[28px] font-medium text-[#1B1B21] mb-6"
-            style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0;"
-          >
+          <h2 class="text-xl font-medium text-text-primary mb-6 font-jakarta">
             Connected Accounts
           </h2>
           <ConnectedAccounts :wire-accounts="wireAccounts" :ach-accounts="achAccounts" />
         </div>
 
         <div>
-          <h2
-            class="text-[22px] leading-[28px] font-medium text-[#1B1B21] mb-6"
-            style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0;"
-          >
+          <h2 class="text-xl font-medium text-text-primary mb-6 font-jakarta">
             Recent Transfers
           </h2>
           <TransfersTable :transfers="transfers" />

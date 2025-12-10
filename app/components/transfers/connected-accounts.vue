@@ -2,10 +2,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div class="space-y-4">
       <div class="flex items-center gap-3">
-        <span
-          class="flex items-center justify-center w-12 h-12 rounded-[12px] p-[14px]"
-          style="background-color: #E9E7EF;"
-        >
+        <span class="flex items-center justify-center w-12 h-12 rounded-[12px] p-[14px] bg-account-icon">
           <img :src="wireIcon" alt="Wire" class="w-full h-full object-contain" />
         </span>
         <div>
@@ -27,10 +24,7 @@
 
     <div class="space-y-4">
       <div class="flex items-center gap-3">
-        <span
-          class="flex items-center justify-center w-12 h-12 rounded-[12px] p-[14px]"
-          style="background-color: #E9E7EF;"
-        >
+        <span class="flex items-center justify-center w-12 h-12 rounded-[12px] p-[14px] bg-account-icon">
           <img :src="plaidIcon" alt="Plaid" class="w-full h-full object-contain" />
         </span>
         <div>

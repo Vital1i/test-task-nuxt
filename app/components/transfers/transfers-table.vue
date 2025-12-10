@@ -2,35 +2,33 @@
   <div class="card p-4 md:p-6 space-y-4">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div class="flex items-center">
-        <div class="flex items-center border border-[#767680] rounded-full overflow-hidden divide-x divide-[#767680]">
+        <div class="flex items-center border border-filter-border rounded-full overflow-hidden divide-x divide-filter-border">
           <button
             v-for="tab in tabs"
             :key="tab.key"
             type="button"
-            class="flex items-center justify-center gap-2 px-5 py-[2px] text-[14px] leading-[28px] font-medium text-center align-middle transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-            :class="activeFilter === tab.key ? 'bg-[#CFE5F8] text-[#1B1B21] hover:bg-[#b8d9f5]' : 'text-[#1B1B21] bg-transparent hover:bg-[#eef4ff] hover:text-[#1B1B21]'"
-            style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; border-color: #767680;"
+            class="flex items-center justify-center gap-2 px-5 py-[2px] text-base-tall font-medium text-center align-middle transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 font-jakarta"
+            :class="activeFilter === tab.key ? 'bg-filter-active-bg text-text-primary hover:bg-filter-active-hover' : 'text-text-primary bg-transparent hover:bg-filter-hover hover:text-text-primary'"
             @click="activeFilter = tab.key"
           >
-            <span v-if="activeFilter === tab.key" class="text-[#2F63C8] text-lg">✓</span>
+            <span v-if="activeFilter === tab.key" class="text-filter-active-indicator text-lg">✓</span>
             <span>{{ tab.label }}</span>
           </button>
         </div>
       </div>
       <button
         type="button"
-        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-[14px] leading-[20px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-[#F5F2FA] hover:bg-[#E7E3F4] hover:border-brand-200 focus-visible:outline-brand-500/80"
-        style="font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: 0.1px; color: #45464F;"
+        class="pill pill-ghost border border-border/80 dark:border-slate-700 px-3 py-[6px] text-base font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 bg-pill-bg hover:bg-pill-hover hover:border-brand-200 focus-visible:outline-brand-500/80 text-text-secondary font-jakarta"
       >
         Last 7 days
       </button>
     </div>
 
     <div class="hidden md:block overflow-x-auto">
-      <div class="bg-[#F5F5F7] rounded-2xl p-2">
+      <div class="bg-table-bg rounded-2xl p-2">
         <table class="min-w-full text-sm bg-transparent rounded-2xl overflow-hidden">
-          <thead class="border-b border-[#C6C5D0] dark:border-slate-800">
-            <tr class="text-left text-[#5B5C64]">
+          <thead class="border-b border-table-border dark:border-slate-800">
+            <tr class="text-left text-text-muted">
               <th
                 v-for="col in columns"
                 :key="col.key"
@@ -41,7 +39,7 @@
               </th>
             </tr>
           </thead>
-          <tbody v-if="filtered.length" class="divide-y divide-[#C6C5D0] dark:divide-slate-800">
+          <tbody v-if="filtered.length" class="divide-y divide-table-border dark:divide-slate-800">
             <tr v-for="transfer in filtered" :key="transfer.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/60">
               <td v-for="col in columns" :key="col.key" class="py-[18px] px-4" :class="col.align === 'center' ? 'text-center' : ''">
                 <template v-if="col.key === 'amount'">
